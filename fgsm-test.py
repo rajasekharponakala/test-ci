@@ -172,7 +172,7 @@ for i in range(len(epsilons)):
         ex = ex.transpose((1, 2, 0))
         mapping = {0: 'bus', 1: 'pickup', 2: 'sedam', 3: 'truck', 4: 'van'}
         plt.title("{} -> {}".format(mapping[orig], mapping[adv]))
-        plt.imshow(ex)
+        #plt.imshow(ex)
 plt.tight_layout()
 plt.savefig("/usr/home/st119220/torchex1/standard_vis_fgsm.pdf")
 #plt.show()
