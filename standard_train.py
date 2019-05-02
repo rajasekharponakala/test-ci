@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import time
 import os
 import copy
+import pandas as pd
 print("PyTorch Version: ",torch.__version__)
 print("Torchvision Version: ",torchvision.__version__)
 
@@ -101,7 +102,7 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                 best_acc = epoch_acc
                 best_model_wts = copy.deepcopy(model.state_dict())
             if phase == 'val':
-                val_acc_history.append(epoch_acc)
+                val_acc_history.append(epoch_acc) 
 
         print()
 
@@ -213,6 +214,7 @@ model_ft, hist = train_model(model_ft, dataloaders_dict, criterion, optimizer_ft
 ohist = []
 
 ohist = [h.cpu().numpy() for h in hist]
+pd.DataFrame(ohist).to_csv("test-ci/train_val.csv", header=None, index=None)
 
 plt.title("Validation Accuracy vs. Number of Training Epochs")
 plt.xlabel("Training Epochs")
