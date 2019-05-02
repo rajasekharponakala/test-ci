@@ -214,7 +214,7 @@ model_ft, hist = train_model(model_ft, dataloaders_dict, criterion, optimizer_ft
 ohist = []
 
 ohist = [h.cpu().numpy() for h in hist]
-pd.DataFrame(ohist).to_csv("test-ci/train_val.csv", header=None, index=None)
+pd.DataFrame(ohist).to_csv("Standard\ training/test-ci/train_val.csv", header=None, index=None)
 
 plt.title("Validation Accuracy vs. Number of Training Epochs")
 plt.xlabel("Training Epochs")
