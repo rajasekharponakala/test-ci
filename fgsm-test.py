@@ -24,7 +24,7 @@ train_loader = DataLoader(vtype_train, batch_size = 96, shuffle=True)
 test_loader = DataLoader(vtype_test, batch_size = 1, shuffle=True)
 # Define what device we are using
 print("CUDA Available: ",torch.cuda.is_available())
-device = torch.device("cuda" if (use_cuda and torch.cuda.is_available()) else "cpu")
+device = torch.device("cuda:0" if (use_cuda and torch.cuda.is_available()) else "cpu")
 
 Net = models.googlenet(num_classes =5)
 
