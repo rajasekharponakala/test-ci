@@ -174,5 +174,5 @@ for i in range(len(epsilons)):
         plt.title("{} -> {}".format(mapping[orig], mapping[adv]))
         #plt.imshow(ex)
 plt.tight_layout()
-plt.savefig("/usr/home/st119220/torchex1/standard_vis_fgsm.pdf")
+plt.savefig("/usr/home/st119220/torchex1/standard_vis_fgsm.png")
 #plt.show()
