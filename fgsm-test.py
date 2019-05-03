@@ -153,26 +153,6 @@ plt.xticks(np.arange(0, .35, step=0.05))
 plt.title("Accuracy vs Epsilon")
 plt.xlabel("Epsilon")
 plt.ylabel("Accuracy")
-plt.savefig("/usr/home/st119220/torchex1/standdard_eps_vs_acc_plot.png")
+plt.savefig("acc_plot.png")
 #plt.show()
 
-
-# Plot several examples of adversarial samples at each epsilon
-cnt = 0
-plt.figure(figsize=(8,10))
-for i in range(len(epsilons)):
-    for j in range(len(examples[i])):
-        cnt += 1
-        plt.subplot(len(epsilons),len(examples[0]),cnt)
-        plt.xticks([], [])
-        plt.yticks([], [])
-        if j == 0:
-            plt.ylabel("Eps: {}".format(epsilons[i]), fontsize=14)
-        orig,adv,ex = examples[i][j]
-        ex = ex.transpose((1, 2, 0))
-        mapping = {0: 'bus', 1: 'pickup', 2: 'sedam', 3: 'truck', 4: 'van'}
-        plt.title("{} -> {}".format(mapping[orig], mapping[adv]))
-        #plt.imshow(ex)
-plt.tight_layout()
-plt.savefig("/usr/home/st119220/torchex1/standard_vis_fgsm.png")
-#plt.show()
