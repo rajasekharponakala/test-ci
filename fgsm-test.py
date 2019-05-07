@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import os
 
 epsilons = [0, .05, .1, .15, .2, .25, .3]
-pretrained_model = "/usr/home/st119220/models/standard_googlenet_noaux.pth"
+pretrained_model = "/usr/home/st119220/models/adv_trained_googlenet.pth"
 use_cuda=True
 #datadir = "/home/raja/Documents/raja/torchexp/data"
 
@@ -144,7 +144,8 @@ for eps in epsilons:
     acc, ex = test(model, device, test_loader, eps)
     accuracies.append(acc)
     examples.append(ex)
-pd.DataFrame(accuracies).to_csv("/usr/home/st119220/models/fgsm_std_acc.csv")
+
+pd.DataFrame(accuracies).to_csv("/usr/home/st119220/models/fgsm_adv_acc.csv")
 #pd.DataFrame(epsilons).to_csv("/usr/home/st119220/models/fgsm_std_eps.csv")
 plt.figure(figsize=(5,5))
 plt.plot(epsilons, accuracies, "*-")
