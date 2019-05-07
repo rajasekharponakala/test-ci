@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import os
 
 epsilons = [0, .05, .1, .15, .2, .25, .3]
-pretrained_model = "/usr/home/st119220/torchex1/googlenet/standard_googlenet.pth"
+pretrained_model = "/usr/home/st119220/models/standard_googlenet_noaux.pth"
 use_cuda=True
 #datadir = "/home/raja/Documents/raja/torchexp/data"
 
@@ -24,20 +24,20 @@ train_loader = DataLoader(vtype_train, batch_size = 96, shuffle=True)
 test_loader = DataLoader(vtype_test, batch_size = 1, shuffle=True)
 # Define what device we are using
 print("CUDA Available: ",torch.cuda.is_available())
-device = torch.device("cuda:0" if (use_cuda and torch.cuda.is_available()) else "cpu")
+device = torch.device("cuda:1" if (use_cuda and torch.cuda.is_available()) else "cpu")
 
 Net = models.googlenet(num_classes =5)
 
-num_ftrs = Net.aux1.fc2.in_features
-Net.aux1.fc2 = nn.Linear(num_ftrs, 5)
+#num_ftrs = Net.aux1.fc2.in_features
+#Net.aux1.fc2 = nn.Linear(num_ftrs, 5)
         
-num_ftrs = Net.aux2.fc2.in_features
-Net.aux2.fc2 = nn.Linear(num_ftrs, 5)
+#num_ftrs = Net.aux2.fc2.in_features
+#Net.aux2.fc2 = nn.Linear(num_ftrs, 5)
         # Handle the primary net
         #num_ftrs = model_ft.fc.in_features
         #model_ft.fc = nn.Linear(num_ftrs,num_classes)
-num_ftrs = Net.fc.in_features
-Net.fc = nn.Linear(num_ftrs, 5)
+#num_ftrs = Net.fc.in_features
+#Net.fc = nn.Linear(num_ftrs, 5)
 
 # Initialize the network
 model = Net.to(device)
@@ -144,8 +144,8 @@ for eps in epsilons:
     acc, ex = test(model, device, test_loader, eps)
     accuracies.append(acc)
     examples.append(ex)
-
-
+pd.DataFrame(accuracies).to_csv("/usr/home/st119220/models/fgsm_std_acc.csv")
+#pd.DataFrame(epsilons).to_csv("/usr/home/st119220/models/fgsm_std_eps.csv")
 plt.figure(figsize=(5,5))
 plt.plot(epsilons, accuracies, "*-")
 plt.yticks(np.arange(0, 1.1, step=0.1))
@@ -153,6 +153,6 @@ plt.xticks(np.arange(0, .35, step=0.05))
 plt.title("Accuracy vs Epsilon")
 plt.xlabel("Epsilon")
 plt.ylabel("Accuracy")
-plt.savefig("acc_plot.png")
+#plt.savefig("acc_plot.png")
 #plt.show()
 
