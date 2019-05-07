@@ -26,7 +26,7 @@ test_loader = DataLoader(vtype_test, batch_size = 1, shuffle=True)
 print("CUDA Available: ",torch.cuda.is_available())
 device = torch.device("cuda:1" if (use_cuda and torch.cuda.is_available()) else "cpu")
 
-Net = models.googlenet(num_classes =5)
+Net = models.googlenet(aux_logits=False, num_classes =5)
 
 #num_ftrs = Net.aux1.fc2.in_features
 #Net.aux1.fc2 = nn.Linear(num_ftrs, 5)
