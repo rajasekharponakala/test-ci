@@ -214,16 +214,16 @@ model_ft, hist = train_model(model_ft, dataloaders_dict, criterion, optimizer_ft
 ohist = []
 
 ohist = [h.cpu().numpy() for h in hist]
-pd.DataFrame(ohist).to_csv("/usr/home/st119220/torchex1/train_val.csv", header=None, index=None)
+#pd.DataFrame(ohist).to_csv("/usr/home/st119220/torchex1/train_val.csv", header=None, index=None)
 
 plt.title("Validation Accuracy vs. Number of Training Epochs")
 plt.xlabel("Training Epochs")
 plt.ylabel("Validation Accuracy")
-plt.plot(range(1,num_epochs+1),ohist,label="Pretrained")
+plt.plot(range(1,num_epochs+1),ohist,label="")
 #plt.plot(range(1,num_epochs+1),shist,label="Scratch")
 plt.ylim((0,1.))
 plt.xticks(np.arange(1, num_epochs+1, 1.0))
 plt.legend()
-plt.savefig('standard_val_acc.pdf')
+plt.savefig('standard_val_acc.png')
 #plt.show()
  
